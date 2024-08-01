@@ -1,0 +1,276 @@
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Information System</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      padding: 10px;
+    }
+
+    nav a:hover {
+      background-color: #555;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+    }
+
+    .user-info span {
+      margin-right: 10px;
+    }
+
+    .logout-btn {
+      padding: 10px 20px;
+      background-color: #d9534f;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .logout-btn:hover {
+      background-color: #c9302c;
+    }
+
+    .action-buttons {
+      position: fixed;
+      top: 60px;
+      left: 50%; /* Center horizontally */
+      transform: translateX(-50%); /* Adjust for centering */
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Center vertically */
+    }
+
+    .action-btn {
+      margin-top: 10px;
+      padding: 20px 40px;
+      background-color: #337ab7;
+      color: white;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      width: 200px; /* Adjusted width for both buttons to be the same */
+      justify-content: space-between; /* To center the icon and text */
+    }
+
+    .action-btn:hover {
+      background-color: #286090;
+    }
+
+    .rectangular-icon {
+      width: 30px;
+      height: 24px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a href="#">Student Information System</a>
+    <div class="user-info">
+      <span>{{student_name}}</span>
+      <a class="logout-btn" href="{% url 'logout' %}"><button class="logout-btn">Logout</button></a>
+    </div>
+  </nav>
+
+  <div class="action-buttons">
+    <a href="{% url 'profile' student_id %}"><button class="action-btn">
+      <i class="fas fa-user rectangular-icon"></i> Profile
+    </button><a>
+    <a href="{% url 'Acedemic' student_id %}"><button class="action-btn">
+      <i class="fas fa-graduation-cap rectangular-icon"></i> Academic
+    </button></a>
+  </div>
+
+  <!-- Content of your Student Information System goes here -->
+
+  <script>
+    function logout() {
+      // Add your logout logic here
+      alert('Logout clicked. Add your logout logic here.');
+    }
+  </script>
+
+</body>
+
+</html> {% endcomment %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Information System</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      padding: 10px;
+    }
+
+    nav a:hover {
+      background-color: #555;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+    }
+
+    .user-info span {
+      margin-right: 10px;
+    }
+
+    .logout-btn {
+      padding: 10px 20px;
+      background-color: #d9534f;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .logout-btn:hover {
+      background-color: #c9302c;
+    }
+
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap; /* Allows buttons to wrap if needed */
+      margin-top: 60px; /* Space below the nav bar */
+    }
+
+    .action-btn {
+      margin: 20px; /* Adjusted margin */
+      width: 200px; /* Square shape */
+      height: 200px; /* Square shape */
+      background-color: #337ab7;
+      color: white;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column; /* Stack the image and text vertically */
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s; /* Smooth transition */
+      font-size: 18px; /* Larger font size */
+      text-align: center;
+      border-radius: 20px; /* Rounded corners */
+    }
+
+    .action-btn:hover {
+      background-color: #f0ad4e; /* Light yellow on hover */
+    }
+
+    .logo-image {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a href="#">Student Information System</a>
+    <div class="user-info">
+      <span>{{ staff_name }}</span>
+      <a class="logout-btn" href="{% url 'logout' %}"><button class="logout-btn">Logout</button></a>
+    </div>
+  </nav>
+
+  <div class="action-buttons">
+    <a href="{% url 'profile' student_id %}">
+      <button class="action-btn">
+        <img src="{% static '082213cb0f9eabb7e6715f59ef7d322a-instagram-profile-icon-by-vexels.webp' %}" alt="Profile" class="logo-image">
+        Profile
+      </button>
+    </a>
+    <a href="{% url 'Acedemic' student_id %}">
+      <button class="action-btn">
+        <img src="{% static 'OIP.jpeg' %}" alt="Academic" class="logo-image">
+        Academic
+      </button>
+    </a>
+  </div>
+
+  <script>
+    function logout() {
+      // Add your logout logic here
+      alert('Logout clicked. Add your logout logic here.');
+    }
+  </script>
+
+</body>
+
+</html>
+
+
+

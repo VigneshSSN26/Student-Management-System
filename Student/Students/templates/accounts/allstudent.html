@@ -1,0 +1,100 @@
+<!-- students.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students - Student Information System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333; /* Set the text color to match the navbar background */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .course-line {
+            margin-bottom: 10px; /* Adjust the value to control the space between lines */
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <span style="color: white;">Student Information System</span>
+    </nav>
+
+    <div class="content">
+        <h2>Students</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Course Completed</th>
+                    <th>Marks Acquired</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.department.department_name }}</td>
+                    <td>
+                        {% for completed_course in student.creditss_set.all %}
+                                {{ completed_course.course.course_name }}<br>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for credit in student.creditss_set.all %}
+                            {{ credit.credit_acquired }}<br>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>
+
